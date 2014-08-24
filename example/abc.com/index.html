@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Porthole Demo</title>
+        <script type="text/javascript" src="js/json.js"></script>
 		<script type="text/javascript" src="js/porthole.js"></script>
 		<script type="text/javascript">
 			var guestDomain = 'xyz.com';
 			
 			function onMessage1(messageEvent) {  
-				Porthole.trace("onMessage1");
+			    Porthole.trace("onMessage1");
 				if (messageEvent.origin == "http://" + guestDomain) {
 					if (messageEvent.data["color"]) {
 						document.body.bgColor = messageEvent.data["color"];
@@ -46,11 +47,11 @@
 			window.onload=function(){ 
 				Porthole.trace("onload");
 					// Create a proxy window to send to and receive message from the guest iframe
-					windowProxy1 = new Porthole.WindowProxy('http://' + guestDomain + '/proxy.html', 'guestFrame1');
+					windowProxy1 = new Porthole.WindowProxy('http://' + guestDomain + '/xyz/proxy.html', 'guestFrame1');
 					windowProxy1.addEventListener(onMessage1);
 
 					// Create a proxy window to send to and receive message from the guest iframe
-					windowProxy2 = new Porthole.WindowProxy('http://' + guestDomain + '/proxy.html', 'guestFrame2');
+					windowProxy2 = new Porthole.WindowProxy('http://' + guestDomain + '/xyz/proxy.html', 'guestFrame2');
 					windowProxy2.addEventListener(onMessage2);
 			};
 		</script>
@@ -68,11 +69,11 @@
 		</div>
 		<div>
 			<h3>Frame 1</h3>
-			<iframe id="guestFrame1" name="guestFrame1" width="500px" height="150px" frameborder="1" src="http://xyz.com/" scrolling="no"></iframe>
+			<iframe id="guestFrame1" name="guestFrame1" width="500px" height="150px" frameborder="1" src="http://xyz.com/xyz" scrolling="no"></iframe>
 		</div>
 		<div>
 			<h3>Frame 2</h3>
-			<iframe id="guestFrame2" name="guestFrame2" width="500px" height="150px" frameborder="1" src="http://xyz.com/" scrolling="no"></iframe>
+			<iframe id="guestFrame2" name="guestFrame2" width="500px" height="150px" frameborder="1" src="http://xyz.com/xyz" scrolling="no"></iframe>
 		</div>
 	</body>
 </html>
